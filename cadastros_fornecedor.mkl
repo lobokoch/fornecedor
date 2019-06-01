@@ -1,0 +1,66 @@
+@label("Cadastros") //xxxx
+domain cadastros
+
+@label("Fornecedor")
+service fornecedor {
+	
+	config {
+		groupId: "br.com.kerubin.api"
+		version: "1.0.0"
+		cloudConfigUri: "http://localhost:9091" //xx
+		servicePort: 0
+		
+		messagingCore {version:"1.0.0"}
+		databaseCore {version:"1.0.0"}
+	}
+	
+	@publishEvents
+	@label("Fornecedor")
+	entity Fornecedor {		
+		
+		//--
+		nome: string
+		label: "Nome"
+		publishedInEvents
+		listFilter(many: "Fornecedores")
+		web(styleClass: "ui-md-6")
+		
+		cpfCNPJ: string?
+		label: "Documento (CNPJ/CPF)"
+		publishedInEvents
+		web(styleClass: "ui-md-4")
+		
+		ie: string?
+		label: "Inscrição estadual"
+		web(styleClass: "ui-md-2")
+		//--
+		
+		nomeContato: string?
+		label: "Nome para contato"
+		web(styleClass: "ui-md-6")
+		
+		fone: string?
+		label: "Telefone"
+		web(styleClass: "ui-md-3")
+		
+		celular: string?
+		label: "Celular"
+		web(styleClass: "ui-md-3")
+		
+		//--
+		email: string?
+		label: "E-mail"
+		web(styleClass: "ui-md-6")
+		site: string?
+		label: "Site"
+		web(styleClass: "ui-md-6")
+		//--
+		
+		observacoes: string[1000]?
+		label: "Observações"
+		web(styleClass: "ui-md-12")
+		
+		
+	}
+	
+}
