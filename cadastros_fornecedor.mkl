@@ -1,4 +1,4 @@
-@label("Cadastros") //xxxx
+@label("Cadastros") //xxxxx
 domain cadastros
 
 @label("Fornecedor")
