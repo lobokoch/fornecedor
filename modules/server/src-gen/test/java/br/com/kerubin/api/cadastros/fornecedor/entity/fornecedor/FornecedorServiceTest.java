@@ -85,14 +85,15 @@ public class FornecedorServiceTest extends CadastrosFornecedorBaseEntityTest {
 		fornecedor.setId(java.util.UUID.randomUUID());
 		fornecedor.setTipoPessoa(TipoPessoa.PESSOA_JURIDICA);
 		fornecedor.setNome(generateRandomString(255));
-		fornecedor.setCnpjCPF(generateRandomString(255));
+		fornecedor.setMaisOpcoes(false);
+		fornecedor.setCnpjCPF("92020472007");
 		fornecedor.setIeRG(generateRandomString(255));
 		fornecedor.setDataFundacaoNascimento(getNextDate());
 		fornecedor.setNomeContato(generateRandomString(255));
 		fornecedor.setFone(generateRandomString(255));
 		fornecedor.setCelular(generateRandomString(255));
-		fornecedor.setEmail(generateRandomString(255));
-		fornecedor.setSite(generateRandomString(255));
+		fornecedor.setEmail("fortest@gmail.com");
+		fornecedor.setSite("http://www.fortest.com");
 		fornecedor.setCep(generateRandomString(255));
 		fornecedor.setUf(UF.SC);
 		fornecedor.setCidade(generateRandomString(255));
@@ -217,14 +218,15 @@ public class FornecedorServiceTest extends CadastrosFornecedorBaseEntityTest {
 		
 		fornecedor.setTipoPessoa(TipoPessoa.PESSOA_JURIDICA);
 		fornecedor.setNome(generateRandomString(255));
-		fornecedor.setCnpjCPF(generateRandomString(255));
+		fornecedor.setMaisOpcoes(false);
+		fornecedor.setCnpjCPF("92020472007");
 		fornecedor.setIeRG(generateRandomString(255));
 		fornecedor.setDataFundacaoNascimento(getNextDate());
 		fornecedor.setNomeContato(generateRandomString(255));
 		fornecedor.setFone(generateRandomString(255));
 		fornecedor.setCelular(generateRandomString(255));
-		fornecedor.setEmail(generateRandomString(255));
-		fornecedor.setSite(generateRandomString(255));
+		fornecedor.setEmail("fortest@gmail.com");
+		fornecedor.setSite("http://www.fortest.com");
 		fornecedor.setCep(generateRandomString(255));
 		fornecedor.setUf(UF.SC);
 		fornecedor.setCidade(generateRandomString(255));
@@ -554,14 +556,15 @@ public class FornecedorServiceTest extends CadastrosFornecedorBaseEntityTest {
 		
 		fornecedorEntity.setTipoPessoa(TipoPessoa.PESSOA_JURIDICA);
 		fornecedorEntity.setNome(generateRandomString(255));
-		fornecedorEntity.setCnpjCPF(generateRandomString(255));
+		fornecedorEntity.setMaisOpcoes(false);
+		fornecedorEntity.setCnpjCPF("92020472007");
 		fornecedorEntity.setIeRG(generateRandomString(255));
 		fornecedorEntity.setDataFundacaoNascimento(getNextDate());
 		fornecedorEntity.setNomeContato(generateRandomString(255));
 		fornecedorEntity.setFone(generateRandomString(255));
 		fornecedorEntity.setCelular(generateRandomString(255));
-		fornecedorEntity.setEmail(generateRandomString(255));
-		fornecedorEntity.setSite(generateRandomString(255));
+		fornecedorEntity.setEmail("fortest@gmail.com");
+		fornecedorEntity.setSite("http://www.fortest.com");
 		fornecedorEntity.setCep(generateRandomString(255));
 		fornecedorEntity.setUf(UF.SC);
 		fornecedorEntity.setCidade(generateRandomString(255));
