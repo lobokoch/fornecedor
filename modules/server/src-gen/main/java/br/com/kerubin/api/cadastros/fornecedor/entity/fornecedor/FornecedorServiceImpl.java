@@ -83,6 +83,16 @@ public class FornecedorServiceImpl implements FornecedorService {
 		publishEvent(entity, FornecedorEvent.FORNECEDOR_DELETED);
 	}
 	
+	@Transactional
+	@Override
+	public void deleteInBulk(java.util.List<java.util.UUID> idList) {
+		// Delete it.
+		fornecedorRepository.deleteInBulk(idList);
+		
+		// Force flush to the database, for relationship validation and must throw exception because of this here.
+		fornecedorRepository.flush();
+	}
+	
 	protected void publishEvent(FornecedorEntity entity, String eventName) {
 		DomainEvent event = new FornecedorEvent(entity.getId(), 
 			entity.getTipoPessoa(), 
