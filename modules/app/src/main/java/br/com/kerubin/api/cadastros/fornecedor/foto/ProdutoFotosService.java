@@ -13,4 +13,6 @@ public interface ProdutoFotosService {
 
 	FotoDTO uploadProdutoFotoAndGet(UUID produtoId, MultipartFile foto);
 
+	void deleteProdutoFotosItem(UUID fotoId);
+
 }

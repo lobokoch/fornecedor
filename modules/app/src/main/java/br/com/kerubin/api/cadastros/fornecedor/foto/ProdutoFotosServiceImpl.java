@@ -40,6 +40,17 @@ public class ProdutoFotosServiceImpl implements ProdutoFotosService {
 
 	@Inject
 	private FotoRepository fotoRepository;
+	
+	@Transactional
+	@Override
+	public void deleteProdutoFotosItem(UUID fotoId) {
+		try {
+			fotoRepository.deleteById(fotoId);			
+		} catch (Exception e) {
+			log.error("Erro ao excluir Produto.fotos com id: {}. Erro: {}", fotoId, e.getMessage(), e);
+			throw e;
+		}
+	}
 
 	@Transactional
 	@Override
@@ -236,5 +247,7 @@ public class ProdutoFotosServiceImpl implements ProdutoFotosService {
 		}
 		return outputStream.toByteArray();
 	}
+
+	
 
 }
