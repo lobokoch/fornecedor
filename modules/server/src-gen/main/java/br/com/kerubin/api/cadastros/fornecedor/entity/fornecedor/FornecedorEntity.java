@@ -133,6 +133,10 @@ public class FornecedorEntity  {
 		return maisOpcoes;
 	}
 	
+	public boolean isMaisOpcoes() {
+		return Boolean.TRUE.equals(maisOpcoes);
+	}
+	
 	public String getCnpjCPF() {
 		return cnpjCPF;
 	}
@@ -199,6 +203,10 @@ public class FornecedorEntity  {
 	
 	public Boolean getAtivo() {
 		return ativo;
+	}
+	
+	public boolean isAtivo() {
+		return Boolean.TRUE.equals(ativo);
 	}
 	
 	public void setId(java.util.UUID id) {
@@ -357,10 +365,174 @@ public class FornecedorEntity  {
 		if (getClass() != obj.getClass())
 			return false;
 		FornecedorEntity other = (FornecedorEntity) obj;
+			
+		
+		// Field: id
 		if (id == null) {
-			if (other.id != null)
+			if (other.id != null) {
 				return false;
+			}
 		} else if (!id.equals(other.id))
+			return false;
+		
+		// Field: tipoPessoa
+		if (tipoPessoa == null) {
+			if (other.tipoPessoa != null) {
+				return false;
+			}
+		} else if (!tipoPessoa.equals(other.tipoPessoa))
+			return false;
+		
+		// Field: nome
+		if (nome == null) {
+			if (other.nome != null) {
+				return false;
+			}
+		} else if (!nome.equals(other.nome))
+			return false;
+		
+		// Field: maisOpcoes
+		if (maisOpcoes == null) {
+			if (other.maisOpcoes != null) {
+				return false;
+			}
+		} else if (!maisOpcoes.equals(other.maisOpcoes))
+			return false;
+		
+		// Field: cnpjCPF
+		if (cnpjCPF == null) {
+			if (other.cnpjCPF != null) {
+				return false;
+			}
+		} else if (!cnpjCPF.equals(other.cnpjCPF))
+			return false;
+		
+		// Field: ieRG
+		if (ieRG == null) {
+			if (other.ieRG != null) {
+				return false;
+			}
+		} else if (!ieRG.equals(other.ieRG))
+			return false;
+		
+		// Field: dataFundacaoNascimento
+		if (dataFundacaoNascimento == null) {
+			if (other.dataFundacaoNascimento != null) {
+				return false;
+			}
+		} else if (!dataFundacaoNascimento.equals(other.dataFundacaoNascimento))
+			return false;
+		
+		// Field: nomeContato
+		if (nomeContato == null) {
+			if (other.nomeContato != null) {
+				return false;
+			}
+		} else if (!nomeContato.equals(other.nomeContato))
+			return false;
+		
+		// Field: fone
+		if (fone == null) {
+			if (other.fone != null) {
+				return false;
+			}
+		} else if (!fone.equals(other.fone))
+			return false;
+		
+		// Field: celular
+		if (celular == null) {
+			if (other.celular != null) {
+				return false;
+			}
+		} else if (!celular.equals(other.celular))
+			return false;
+		
+		// Field: email
+		if (email == null) {
+			if (other.email != null) {
+				return false;
+			}
+		} else if (!email.equals(other.email))
+			return false;
+		
+		// Field: site
+		if (site == null) {
+			if (other.site != null) {
+				return false;
+			}
+		} else if (!site.equals(other.site))
+			return false;
+		
+		// Field: cep
+		if (cep == null) {
+			if (other.cep != null) {
+				return false;
+			}
+		} else if (!cep.equals(other.cep))
+			return false;
+		
+		// Field: uf
+		if (uf == null) {
+			if (other.uf != null) {
+				return false;
+			}
+		} else if (!uf.equals(other.uf))
+			return false;
+		
+		// Field: cidade
+		if (cidade == null) {
+			if (other.cidade != null) {
+				return false;
+			}
+		} else if (!cidade.equals(other.cidade))
+			return false;
+		
+		// Field: bairro
+		if (bairro == null) {
+			if (other.bairro != null) {
+				return false;
+			}
+		} else if (!bairro.equals(other.bairro))
+			return false;
+		
+		// Field: endereco
+		if (endereco == null) {
+			if (other.endereco != null) {
+				return false;
+			}
+		} else if (!endereco.equals(other.endereco))
+			return false;
+		
+		// Field: numero
+		if (numero == null) {
+			if (other.numero != null) {
+				return false;
+			}
+		} else if (!numero.equals(other.numero))
+			return false;
+		
+		// Field: complemento
+		if (complemento == null) {
+			if (other.complemento != null) {
+				return false;
+			}
+		} else if (!complemento.equals(other.complemento))
+			return false;
+		
+		// Field: observacoes
+		if (observacoes == null) {
+			if (other.observacoes != null) {
+				return false;
+			}
+		} else if (!observacoes.equals(other.observacoes))
+			return false;
+		
+		// Field: ativo
+		if (ativo == null) {
+			if (other.ativo != null) {
+				return false;
+			}
+		} else if (!ativo.equals(other.ativo))
 			return false;
 		
 		return true;

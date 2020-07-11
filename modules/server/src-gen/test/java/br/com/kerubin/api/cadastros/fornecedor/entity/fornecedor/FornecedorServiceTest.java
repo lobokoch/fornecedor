@@ -187,7 +187,6 @@ public class FornecedorServiceTest extends CadastrosFornecedorBaseEntityTest {
 		assertThat(actual.getId()).isNotNull();
 		assertThat(actual).isEqualToIgnoringGivenFields(fornecedor, IGNORED_FIELDS);
 		
-		
 	}
 	// END CREATE TESTS
 	
@@ -322,7 +321,6 @@ public class FornecedorServiceTest extends CadastrosFornecedorBaseEntityTest {
 		assertThat(actual).isNotNull();
 		assertThat(actual.getId()).isNotNull();
 		assertThat(actual).isEqualToIgnoringGivenFields(fornecedor, IGNORED_FIELDS);
-		
 		
 	}
 	// END UPDATE TESTS
@@ -512,15 +510,15 @@ public class FornecedorServiceTest extends CadastrosFornecedorBaseEntityTest {
 		// Reset lastDate field to start LocalDate fields with today in this test. 
 		resetNextDate();
 					
-		// Generate 33 records of data for FornecedorEntity for this test.
+		// Generate 3 records of data for FornecedorEntity for this test.
 		List<FornecedorEntity> testData = new ArrayList<>();
-		final int lastRecord = 33;
+		final int lastRecord = 3;
 		final int firstRecord = 1;
 		for (int i = firstRecord; i <= lastRecord; i++) {
 			testData.add(newFornecedorEntity());
 		}
 		
-		// Check if 33 records of FornecedorEntity was generated.
+		// Check if 3 records of FornecedorEntity was generated.
 		long count = fornecedorRepository.count();
 		assertThat(count).isEqualTo(lastRecord);
 		

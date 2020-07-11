@@ -186,6 +186,29 @@ service fornecedor {
 		
 	}
 	
+	entity Produto {
+		nome: string
+		fotos: contains Foto? oneToMany(opposite:produto)
+	}
+	
+	/*@imageEntity(
+	 	fieldImage: imagem 
+		fieldThumbnail: miniatura 
+		fieldName: nome, 
+		fieldDescription: descricao, 
+		fieldSize: tamanho, 
+		fieldContentType: tipo)
+	*/
+	entity Foto {
+		imagem: byte/*[4000]*/
+		miniatura: byte?/*[4000]*/
+		nome: string?
+		descricao: string?
+		tamanho: integer?
+		tipo: string
+		produto: refers Produto manyToOne(opposite: fotos)
+	}
+	
 	@label("Tipo da pessoa")
 	enum TipoPessoa {		
 		PESSOA_JURIDICA

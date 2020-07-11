@@ -7,3 +7,5 @@ spring:
         username: ${RABBITMQ_USERNAME:admin}
         password: ${RABBITMQ_PASSWORD:admin}
         host: ${RABBITMQ_HOST:lobokoch-virtualbox}
+
+          

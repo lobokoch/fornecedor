@@ -5,7 +5,7 @@ Copyright: Kerubin - kerubin.platform@gmail.com
 WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CODE GENERATION.
 ***********************************************************************************************/
 
-package br.com.kerubin.api.cadastros.fornecedor.entity.fornecedor;
+package br.com.kerubin.api.cadastros.fornecedor.entity.produto;
 
 import java.util.stream.Collectors;
 
@@ -27,6 +27,9 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 
 import br.com.kerubin.api.cadastros.fornecedor.common.PageResult;
 
+		
+import br.com.kerubin.api.cadastros.fornecedor.entity.foto.FotoAutoComplete;
+
 import java.util.Collection;
 import java.util.List;
 import org.springframework.data.domain.Page;
@@ -34,28 +37,28 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
-@RequestMapping("cadastros/fornecedor/entities/fornecedor")
-public class FornecedorController {
+@RequestMapping("cadastros/fornecedor/entities/produto")
+public class ProdutoController {
 	
 	@Autowired
-	private FornecedorService fornecedorService;
+	private ProdutoService produtoService;
 	
 	@Autowired
-	FornecedorDTOConverter fornecedorDTOConverter;
+	ProdutoDTOConverter produtoDTOConverter;
 	
 	@Transactional
 	@PostMapping
-	public ResponseEntity<Fornecedor> create(@Valid @RequestBody Fornecedor fornecedor) {
-		FornecedorEntity fornecedorEntity = fornecedorService.create(fornecedorDTOConverter.convertDtoToEntity(fornecedor));
-		return ResponseEntity.status(HttpStatus.CREATED).body(fornecedorDTOConverter.convertEntityToDto(fornecedorEntity));
+	public ResponseEntity<Produto> create(@Valid @RequestBody Produto produto) {
+		ProdutoEntity produtoEntity = produtoService.create(produtoDTOConverter.convertDtoToEntity(produto));
+		return ResponseEntity.status(HttpStatus.CREATED).body(produtoDTOConverter.convertEntityToDto(produtoEntity));
 	}
 	
 	@Transactional(readOnly = true)
 	@GetMapping("/{id}")
-	public ResponseEntity<Fornecedor> read(@PathVariable java.util.UUID id) {
+	public ResponseEntity<Produto> read(@PathVariable java.util.UUID id) {
 		try {
-			FornecedorEntity fornecedorEntity = fornecedorService.read(id);
-			return ResponseEntity.ok(fornecedorDTOConverter.convertEntityToDto(fornecedorEntity));
+			ProdutoEntity produtoEntity = produtoService.read(id);
+			return ResponseEntity.ok(produtoDTOConverter.convertEntityToDto(produtoEntity));
 		}
 		catch(IllegalArgumentException e) {
 			return ResponseEntity.notFound().build();
@@ -64,10 +67,10 @@ public class FornecedorController {
 	
 	@Transactional
 	@PutMapping("/{id}")
-	public ResponseEntity<Fornecedor> update(@PathVariable java.util.UUID id, @Valid @RequestBody Fornecedor fornecedor) {
+	public ResponseEntity<Produto> update(@PathVariable java.util.UUID id, @Valid @RequestBody Produto produto) {
 		try {
-			FornecedorEntity fornecedorEntity = fornecedorService.update(id, fornecedorDTOConverter.convertDtoToEntity(fornecedor));
-			return ResponseEntity.ok(fornecedorDTOConverter.convertEntityToDto(fornecedorEntity));
+			ProdutoEntity produtoEntity = produtoService.update(id, produtoDTOConverter.convertDtoToEntity(produto));
+			return ResponseEntity.ok(produtoDTOConverter.convertEntityToDto(produtoEntity));
 		}
 		catch(IllegalArgumentException e) {
 			return ResponseEntity.notFound().build();
@@ -77,37 +80,42 @@ public class FornecedorController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable java.util.UUID id) {
-		fornecedorService.delete(id);
+		produtoService.delete(id);
 	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@PostMapping("/deleteInBulk")
 	public void deleteInBulk(@RequestBody java.util.List<java.util.UUID> idList) {
-		fornecedorService.deleteInBulk(idList);
+		produtoService.deleteInBulk(idList);
 	}
 	
 	@Transactional(readOnly = true)
 	@GetMapping
-	public PageResult<Fornecedor> list(FornecedorListFilter fornecedorListFilter, Pageable pageable) {
-		Page<FornecedorEntity> page = fornecedorService.list(fornecedorListFilter, pageable);
-		List<Fornecedor> content = page.getContent().stream().map(pe -> fornecedorDTOConverter.convertEntityToDto(pe)).collect(Collectors.toList());
-		PageResult<Fornecedor> pageResult = new PageResult<>(content, page.getNumber(), page.getSize(), page.getTotalElements());
+	public PageResult<Produto> list(ProdutoListFilter produtoListFilter, Pageable pageable) {
+		Page<ProdutoEntity> page = produtoService.list(produtoListFilter, pageable);
+		List<Produto> content = page.getContent().stream().map(pe -> produtoDTOConverter.convertEntityToDto(pe)).collect(Collectors.toList());
+		PageResult<Produto> pageResult = new PageResult<>(content, page.getNumber(), page.getSize(), page.getTotalElements());
 		return pageResult;
 	}
 	
 	@Transactional(readOnly = true)
 	@GetMapping("/autoComplete")
-	public Collection<FornecedorAutoComplete> autoComplete(@RequestParam("query") String query) {
-		Collection<FornecedorAutoComplete> result = fornecedorService.autoComplete(query);
+	public Collection<ProdutoAutoComplete> autoComplete(@RequestParam("query") String query) {
+		Collection<ProdutoAutoComplete> result = produtoService.autoComplete(query);
 		return result;
 	}
 	
 	
-	@GetMapping("/fornecedorNomeAutoComplete")
-	public Collection<FornecedorNomeAutoComplete> fornecedorNomeAutoComplete(@RequestParam("query") String query) {
-		Collection<FornecedorNomeAutoComplete> result = fornecedorService.fornecedorNomeAutoComplete(query);
+	
+	// Begin relationships autoComplete 
+	
+	@Transactional(readOnly = true)
+	@GetMapping("/fotoFotosAutoComplete")
+	public Collection<FotoAutoComplete> fotoFotosAutoComplete(@RequestParam("query") String query) {
+		Collection<FotoAutoComplete> result = produtoService.fotoFotosAutoComplete(query);
 		return result;
 	}
 	
+	// End relationships autoComplete
 	
 }
