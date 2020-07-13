@@ -335,11 +335,9 @@ public class ProdutoServiceTest extends CadastrosFornecedorBaseEntityTest {
 	protected FotoEntity newFotoEntity(ProdutoEntity produto) {
 		FotoEntity fotoEntity = new FotoEntity();
 		
-		fotoEntity.setImagem("Unit tests".getBytes());
-		fotoEntity.setMiniatura("Unit tests".getBytes());
 		fotoEntity.setNome(generateRandomString(255));
 		fotoEntity.setDescricao(generateRandomString(255));
-		fotoEntity.setTamanho(-5697113051400144312L);
+		fotoEntity.setTamanho(-8010010684067381431L);
 		fotoEntity.setTipo(generateRandomString(255));
 		fotoEntity.setProduto(produto);
 		

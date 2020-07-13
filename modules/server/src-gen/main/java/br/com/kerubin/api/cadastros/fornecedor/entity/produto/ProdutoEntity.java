@@ -37,7 +37,7 @@ public class ProdutoEntity  {
 	@Column(name="nome")
 	private String nome;
 	
-	@OneToMany(mappedBy = "produto", fetch = FetchType.LAZY, cascade = CascadeType.ALL , orphanRemoval = true)
+	@OneToMany(mappedBy = "produto", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE , orphanRemoval = true)
 	private Set<FotoEntity> fotos = new HashSet<>();
 	
 	public java.util.UUID getId() {

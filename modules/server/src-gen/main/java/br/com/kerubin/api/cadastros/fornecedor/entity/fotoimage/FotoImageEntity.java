@@ -5,7 +5,7 @@ Copyright: Kerubin - kerubin.platform@gmail.com
 WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CODE GENERATION.
 ***********************************************************************************************/
 
-package br.com.kerubin.api.cadastros.fornecedor.entity.foto;
+package br.com.kerubin.api.cadastros.fornecedor.entity.fotoimage;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -21,13 +21,19 @@ import javax.persistence.JoinColumn;
 
 @Entity
 @Table(name = "foto")
-public class FotoEntity  {
+public class FotoImageEntity  {
 
 	@GeneratedValue(generator = "uuid2")
 	@GenericGenerator(name = "uuid2", strategy = "uuid2")
 	@Id
 	@Column(name="id")
 	private java.util.UUID id;
+	
+	@Column(name="imagem")
+	private byte[] imagem;
+	
+	@Column(name="miniatura")
+	private byte[] miniatura;
 	
 	@Size(max = 255, message = "\"nome\" pode ter no máximo 255 caracteres.")
 	@Column(name="nome")
@@ -50,6 +56,14 @@ public class FotoEntity  {
 	
 	public java.util.UUID getId() {
 		return id;
+	}
+	
+	public byte[] getImagem() {
+		return imagem;
+	}
+	
+	public byte[] getMiniatura() {
+		return miniatura;
 	}
 	
 	public String getNome() {
@@ -76,6 +90,14 @@ public class FotoEntity  {
 		this.id = id;
 	}
 	
+	public void setImagem(byte[] imagem) {
+		this.imagem = imagem;
+	}
+	
+	public void setMiniatura(byte[] miniatura) {
+		this.miniatura = miniatura;
+	}
+	
 	public void setNome(String nome) {
 		this.nome = nome != null ? nome.trim() : nome; // Chamadas REST fazem trim.
 	}
@@ -96,9 +118,11 @@ public class FotoEntity  {
 		this.produto = produto;
 	}
 	
-	public void assign(FotoEntity source) {
+	public void assign(FotoImageEntity source) {
 		if (source != null) {
 			this.setId(source.getId());
+			this.setImagem(source.getImagem());
+			this.setMiniatura(source.getMiniatura());
 			this.setNome(source.getNome());
 			this.setDescricao(source.getDescricao());
 			this.setTamanho(source.getTamanho());
@@ -107,19 +131,21 @@ public class FotoEntity  {
 		}
 	}
 	
-	public FotoEntity clone() {
+	public FotoImageEntity clone() {
 		return clone(new java.util.HashMap<>());
 	}
 	
-	public FotoEntity clone(java.util.Map<Object, Object> visited) {
+	public FotoImageEntity clone(java.util.Map<Object, Object> visited) {
 		if (visited.containsKey(this)) {
-			return (FotoEntity) visited.get(this);
+			return (FotoImageEntity) visited.get(this);
 		}
 				
-		FotoEntity theClone = new FotoEntity();
+		FotoImageEntity theClone = new FotoImageEntity();
 		visited.put(this, theClone);
 		
 		theClone.setId(this.getId());
+		theClone.setImagem(this.getImagem());
+		theClone.setMiniatura(this.getMiniatura());
 		theClone.setNome(this.getNome());
 		theClone.setDescricao(this.getDescricao());
 		theClone.setTamanho(this.getTamanho());
@@ -137,7 +163,7 @@ public class FotoEntity  {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		FotoEntity other = (FotoEntity) obj;
+		FotoImageEntity other = (FotoImageEntity) obj;
 			
 		
 		// Field: id
@@ -146,6 +172,22 @@ public class FotoEntity  {
 				return false;
 			}
 		} else if (!id.equals(other.id))
+			return false;
+		
+		// Field: imagem
+		if (imagem == null) {
+			if (other.imagem != null) {
+				return false;
+			}
+		} else if (!imagem.equals(other.imagem))
+			return false;
+		
+		// Field: miniatura
+		if (miniatura == null) {
+			if (other.miniatura != null) {
+				return false;
+			}
+		} else if (!miniatura.equals(other.miniatura))
 			return false;
 		
 		// Field: nome

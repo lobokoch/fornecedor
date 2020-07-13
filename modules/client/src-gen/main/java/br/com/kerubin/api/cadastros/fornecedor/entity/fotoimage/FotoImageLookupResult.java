@@ -5,30 +5,16 @@ Copyright: Kerubin - kerubin.platform@gmail.com
 WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CODE GENERATION.
 ***********************************************************************************************/
 
-package br.com.kerubin.api.cadastros.fornecedor.entity.foto;
+package br.com.kerubin.api.cadastros.fornecedor.entity.fotoimage;
 
-import javax.validation.constraints.Size;
-import br.com.kerubin.api.cadastros.fornecedor.entity.produto.ProdutoLookupResult;
-
-public class Foto {
+public class FotoImageLookupResult {
 
 	private java.util.UUID id;
 	
-	@Size(max = 255, message = "\"nome\" pode ter no máximo 255 caracteres.")
 	private String nome;
 	
-	@Size(max = 255, message = "\"descricao\" pode ter no máximo 255 caracteres.")
-	private String descricao;
 	
-	private Long tamanho;
-	
-	@Size(max = 255, message = "\"tipo\" pode ter no máximo 255 caracteres.")
-	private String tipo;
-	
-	private ProdutoLookupResult produto;
-	
-	
-	public Foto() {
+	public FotoImageLookupResult() {
 		// Contructor for reflexion, injection, Jackson, QueryDSL, etc proposal.
 	}
 	
@@ -41,44 +27,12 @@ public class Foto {
 		return nome;
 	}
 	
-	public String getDescricao() {
-		return descricao;
-	}
-	
-	public Long getTamanho() {
-		return tamanho;
-	}
-	
-	public String getTipo() {
-		return tipo;
-	}
-	
-	public ProdutoLookupResult getProduto() {
-		return produto;
-	}
-	
 	public void setId(java.util.UUID id) {
 		this.id = id;
 	}
 	
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-	
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-	
-	public void setTamanho(Long tamanho) {
-		this.tamanho = tamanho;
-	}
-	
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-	
-	public void setProduto(ProdutoLookupResult produto) {
-		this.produto = produto;
 	}
 	
 	@Override
@@ -89,7 +43,7 @@ public class Foto {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Foto other = (Foto) obj;
+		FotoImageLookupResult other = (FotoImageLookupResult) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

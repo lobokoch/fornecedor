@@ -8,18 +8,12 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 package br.com.kerubin.api.cadastros.fornecedor;
 
 import java.util.UUID;
-
-import javax.servlet.MultipartConfigElement;
-
 import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.boot.autoconfigure.amqp.SimpleRabbitListenerContainerFactoryConfigurer;
-import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-
 import br.com.kerubin.api.messaging.core.DomainEvent;
 
 @Configuration
@@ -58,6 +52,4 @@ public class ServerConfig {
 	public MessagePostProcessor afterReceivePostProcessors() {
 		return new MessageAfterReceivePostProcessors();
 	}
-	
-	
 }

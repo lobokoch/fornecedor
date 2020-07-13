@@ -200,13 +200,23 @@ service fornecedor {
 		fieldContentType: tipo)
 	*/
 	entity Foto {
-		imagem: byte/*[4000]*/
+		//imagem: byte/*[4000]*/
+		//miniatura: byte?/*[4000]*/
+		nome: string?
+		descricao: string?
+		tamanho: integer?
+		tipo: string?
+		produto: refers Produto? manyToOne(opposite: fotos)
+	}
+	
+	entity FotoImage alias foto {
+		imagem: byte?/*[4000]*/
 		miniatura: byte?/*[4000]*/
 		nome: string?
 		descricao: string?
 		tamanho: integer?
-		tipo: string
-		produto: refers Produto manyToOne(opposite: fotos)
+		tipo: string?
+		produto: refers Produto? manyToOne/*(opposite: fotos) */
 	}
 	
 	@label("Tipo da pessoa")

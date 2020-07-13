@@ -5,14 +5,18 @@ Copyright: Kerubin - kerubin.platform@gmail.com
 WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CODE GENERATION.
 ***********************************************************************************************/
 
-package br.com.kerubin.api.cadastros.fornecedor.entity.foto;
+package br.com.kerubin.api.cadastros.fornecedor.entity.fotoimage;
 
 import javax.validation.constraints.Size;
 import br.com.kerubin.api.cadastros.fornecedor.entity.produto.ProdutoLookupResult;
 
-public class Foto {
+public class FotoImage {
 
 	private java.util.UUID id;
+	
+	private byte[] imagem;
+	
+	private byte[] miniatura;
 	
 	@Size(max = 255, message = "\"nome\" pode ter no máximo 255 caracteres.")
 	private String nome;
@@ -28,13 +32,21 @@ public class Foto {
 	private ProdutoLookupResult produto;
 	
 	
-	public Foto() {
+	public FotoImage() {
 		// Contructor for reflexion, injection, Jackson, QueryDSL, etc proposal.
 	}
 	
 	
 	public java.util.UUID getId() {
 		return id;
+	}
+	
+	public byte[] getImagem() {
+		return imagem;
+	}
+	
+	public byte[] getMiniatura() {
+		return miniatura;
 	}
 	
 	public String getNome() {
@@ -59,6 +71,14 @@ public class Foto {
 	
 	public void setId(java.util.UUID id) {
 		this.id = id;
+	}
+	
+	public void setImagem(byte[] imagem) {
+		this.imagem = imagem;
+	}
+	
+	public void setMiniatura(byte[] miniatura) {
+		this.miniatura = miniatura;
 	}
 	
 	public void setNome(String nome) {
@@ -89,7 +109,7 @@ public class Foto {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Foto other = (Foto) obj;
+		FotoImage other = (FotoImage) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

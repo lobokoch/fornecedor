@@ -18,12 +18,17 @@ import javax.inject.Inject;
 
 import org.imgscalr.Scalr;
 import org.imgscalr.Scalr.Rotation;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.kerubin.api.cadastros.fornecedor.entity.foto.FotoEntity;
 import br.com.kerubin.api.cadastros.fornecedor.entity.foto.FotoRepository;
+import br.com.kerubin.api.cadastros.fornecedor.entity.fotoimage.FotoImageEntity;
+import br.com.kerubin.api.cadastros.fornecedor.entity.fotoimage.FotoImageRepository;
 import br.com.kerubin.api.cadastros.fornecedor.entity.produto.ProdutoEntity;
 import br.com.kerubin.api.cadastros.fornecedor.entity.produto.ProdutoLookupResult;
 import br.com.kerubin.api.cadastros.fornecedor.entity.produto.ProdutoRepository;
@@ -40,6 +45,27 @@ public class ProdutoFotosServiceImpl implements ProdutoFotosService {
 
 	@Inject
 	private FotoRepository fotoRepository;
+	
+	@Inject
+	private FotoImageRepository fotoImageRepository;
+	
+	@Transactional
+	@Override
+	public void updateProdutoFotosDescricao(UUID fotoId, String descricao) {
+		
+		/*FotoRepository.java
+		@Transactional
+		@Modifying
+		@Query("update FotoEntity fe set fe.descricao = :descricao where fe.id = :fotoId")
+		int updateProdutoFotosDescricao(@Param("fotoId") java.util.UUID fotoId, @Param("descricao") String descricao);*/
+		
+		try {
+			fotoRepository.updateProdutoFotosDescricao(fotoId, descricao);		
+		} catch (Exception e) {
+			log.error("Erro ao atualizar descricao da foto com id: {}. Erro: {}", fotoId, e.getMessage(), e);
+			throw e;
+		}
+	}
 	
 	@Transactional
 	@Override
@@ -58,7 +84,7 @@ public class ProdutoFotosServiceImpl implements ProdutoFotosService {
 		log.info("Receiving foto upload for productId: {}.", produtoId);
 
 		ProdutoEntity produto = produtoRepository.getOne(produtoId);
-		FotoEntity foto = new FotoEntity();
+		FotoImageEntity foto = new FotoImageEntity();
 		try {
 			foto.setNome(file.getOriginalFilename());
 
@@ -76,7 +102,7 @@ public class ProdutoFotosServiceImpl implements ProdutoFotosService {
 		}
 
 		try {
-			foto = fotoRepository.saveAndFlush(foto);
+			foto = fotoImageRepository.saveAndFlush(foto);
 		} catch (Exception e) {
 			throw new IllegalStateException(MessageFormat.format(
 					"Erro ao salvar foto: {0} em produto com id: {1}. Erro: {2}", foto, produtoId, e.getMessage()));
@@ -86,7 +112,7 @@ public class ProdutoFotosServiceImpl implements ProdutoFotosService {
 		return fotoDTO;
 	}
 
-	@Transactional
+	/*@Transactional
 	@Override
 	public List<UUID> produtoFotosUpload(UUID produtoId, List<MultipartFile> fotos) {
 		log.info("Receiving {} images upload for productId: {}.", produtoId, fotos != null ? fotos.size() : 0);
@@ -122,14 +148,14 @@ public class ProdutoFotosServiceImpl implements ProdutoFotosService {
 		log.info("Finish {} images upload for productId: {}.", produtoId, fotos != null ? fotos.size() : 0);
 
 		return fotoIdList;
-	}
+	}*/
 
 	@Transactional(readOnly = true)
 	@Override
 	public FotoDTO getProdutoFoto(java.util.UUID fotoId) throws Exception {
 		log.info("Receiving image downupload for fotoId: {}.", fotoId);
 
-		FotoEntity foto = fotoRepository.findById(fotoId).orElseThrow(() -> {
+		FotoImageEntity foto = fotoImageRepository.findById(fotoId).orElseThrow(() -> {
 			return new EntityNotFoundException(
 					MessageFormat.format("Registro de Foto com id: {0}, não foi encontrado.", fotoId));
 		});
@@ -140,7 +166,7 @@ public class ProdutoFotosServiceImpl implements ProdutoFotosService {
 		return fotoDTO;
 	}
 
-	private FotoDTO fotoEntityToDTO(FotoEntity foto) {
+	private FotoDTO fotoEntityToDTO(FotoImageEntity foto) {
 		FotoDTO fotoDTO = new FotoDTO();
 		if (foto == null) {
 			return fotoDTO;
@@ -247,6 +273,8 @@ public class ProdutoFotosServiceImpl implements ProdutoFotosService {
 		}
 		return outputStream.toByteArray();
 	}
+
+	
 
 	
 

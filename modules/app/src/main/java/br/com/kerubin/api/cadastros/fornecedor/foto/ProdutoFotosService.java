@@ -7,12 +7,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface ProdutoFotosService {
 	
-	List<UUID> produtoFotosUpload(UUID produtoId, List<MultipartFile> fotos);
+	//List<UUID> produtoFotosUpload(UUID produtoId, List<MultipartFile> fotos);
 
 	FotoDTO getProdutoFoto(UUID fotoId) throws Exception;
 
 	FotoDTO uploadProdutoFotoAndGet(UUID produtoId, MultipartFile foto);
 
 	void deleteProdutoFotosItem(UUID fotoId);
+
+	void updateProdutoFotosDescricao(UUID fotoId, String descricao);
 
 }
